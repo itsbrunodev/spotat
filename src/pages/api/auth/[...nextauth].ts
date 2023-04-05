@@ -5,7 +5,7 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
-    maxAge: 1000 * 60 * 60 * 1,
+    maxAge: 60 * 60 * 1,
     /**
      * sessions should only last 1 hour
      * because spotify invalidates
@@ -20,7 +20,7 @@ export const authOptions: NextAuthOptions = {
       /* @ts-ignore */
       clientSecret: process.env.SPOTIFY_SECRET,
       authorization: {
-        params: { scope: "user-top-read user-read-recently-played " },
+        params: { scope: "user-top-read user-read-recently-played" },
       },
     }),
   ],
