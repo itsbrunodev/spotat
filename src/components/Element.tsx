@@ -18,6 +18,7 @@ function BackgroundImage({ src, alt }: { src: string; alt: string }) {
       className="absolute w-full h-full object-cover rounded-2xl"
       src={src}
       alt={alt}
+      quality={1}
       fill
     />
   );
