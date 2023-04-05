@@ -23,6 +23,36 @@ function BackgroundImage({ src, alt }: { src: string; alt: string }) {
   );
 }
 
+function OuterElement({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="hover:ring hover:ring-white rounded-2xl relative animate__animated animate__fadeIn">
+      {children}
+    </div>
+  );
+}
+
+function InnerElement({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex space-x-6 items-center md:p-10 p-6 backdrop-blur-md rounded-2xl bg-zinc-900 bg-opacity-50">
+      {children}
+    </div>
+  );
+}
+
+function BackgroundImageWrapper({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="relative md:w-cover w-[65px] aspect-square">{children}</div>
+  );
+}
+
+function DataWrapper({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex flex-col space-y-1 justify-center md:max-w-sm sm:max-w-[330px] max-w-[180px]">
+      {children}
+    </div>
+  );
+}
+
 export default function Element({
   data,
   place,
@@ -34,42 +64,44 @@ export default function Element({
     const artist = data;
     return (
       <Link href={artist.uri}>
-        <div className="hover:ring hover:ring-white rounded-2xl relative animate__animated animate__fadeIn">
+        <OuterElement>
           <Number number={place} />
           <BackgroundImage src={artist.images[0].url} alt={artist.name} />
-          <div className="flex space-x-6 items-center p-10 backdrop-blur-md rounded-2xl bg-zinc-900 bg-opacity-50">
-            <div className="relative md:w-cover w-[65px] aspect-square">
+          <InnerElement>
+            <BackgroundImageWrapper>
               <Image
                 className="rounded-full object-cover"
                 src={artist.images[0].url}
                 alt={artist.name}
                 fill
               />
-            </div>
-            <h1 className="text-3xl font-medium truncate md:max-w-sm sm:max-w-[175px] max-w-[140px]" title={artist.name}>
-              {artist.name}
-            </h1>
-          </div>
-        </div>
+            </BackgroundImageWrapper>
+            <DataWrapper>
+              <h1 className="text-3xl font-medium truncate" title={artist.name}>
+                {artist.name}
+              </h1>
+            </DataWrapper>
+          </InnerElement>
+        </OuterElement>
       </Link>
     );
   } else {
     const track = data;
     return (
       <Link href={track.uri}>
-        <div className="hover:ring hover:ring-white rounded-2xl relative animate__animated animate__fadeIn">
+        <OuterElement>
           <Number number={place} />
           <BackgroundImage src={track.album.images[0].url} alt={track.name} />
-          <div className="flex space-x-6 items-center p-10 backdrop-blur-md rounded-2xl bg-zinc-900 bg-opacity-50">
-            <div className="relative md:w-cover w-[65px] aspect-square">
+          <InnerElement>
+            <BackgroundImageWrapper>
               <Image
                 className="rounded-lg object-cover"
                 src={track.album.images[0].url}
                 alt={track.name}
                 fill
               />
-            </div>
-            <div className="flex flex-col space-y-1 justify-center md:max-w-sm sm:max-w-[175px] max-w-[140px]">
+            </BackgroundImageWrapper>
+            <DataWrapper>
               <h1 className="text-2xl font-medium truncate" title={track.name}>
                 {track.name}
               </h1>
@@ -78,9 +110,9 @@ export default function Element({
                   {track.artists.map((artist, index) => artist.name).join(", ")}
                 </h2>
               </div>
-            </div>
-          </div>
-        </div>
+            </DataWrapper>
+          </InnerElement>
+        </OuterElement>
       </Link>
     );
   }
