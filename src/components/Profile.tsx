@@ -6,15 +6,13 @@ export const description =
 
 export default function Profile() {
   return (
-    <div className="">
-      <div className="flex flex-col space-y-6">
-        <div className="flex w-full justify-between items-center">
-          {/* @ts-expect-error Server Component */}
-          <Hello />
-          <Logout />
-        </div>
-        <p className="text-zinc-300">{description}</p>
+    <div className="flex flex-col space-y-6">
+      <div className="flex w-full justify-between items-center">
+        {/* @ts-expect-error Server Component */}
+        <Hello />
+        <Logout />
       </div>
+      <p className="text-zinc-300">{description}</p>
     </div>
   );
 }

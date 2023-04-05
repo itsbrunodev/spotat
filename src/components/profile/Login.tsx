@@ -10,7 +10,7 @@ export default function Login() {
 
   return (
     <button
-      className="bg-spotify text-black hover:opacity-75 w-6/12 py-2 rounded-full font-medium disabled:opacity-75 disabled:cursor-default"
+      className="bg-spotify text-black hover:opacity-75 w-full py-2 rounded-full font-medium disabled:opacity-75 disabled:cursor-default"
       disabled={loading}
       onClick={() => {
         setLoading(true);

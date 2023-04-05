@@ -38,7 +38,7 @@ export default function Element({
           <Number number={place} />
           <BackgroundImage src={artist.images[0].url} alt={artist.name} />
           <div className="flex space-x-6 items-center p-10 backdrop-blur-md rounded-2xl bg-zinc-900 bg-opacity-50">
-            <div className="relative w-cover aspect-square">
+            <div className="relative md:w-cover w-[65px] aspect-square">
               <Image
                 className="rounded-full object-cover"
                 src={artist.images[0].url}
@@ -46,7 +46,7 @@ export default function Element({
                 fill
               />
             </div>
-            <h1 className="text-3xl font-medium truncate" title={artist.name}>
+            <h1 className="text-3xl font-medium truncate md:max-w-sm sm:max-w-[175px] max-w-[140px]" title={artist.name}>
               {artist.name}
             </h1>
           </div>
@@ -61,7 +61,7 @@ export default function Element({
           <Number number={place} />
           <BackgroundImage src={track.album.images[0].url} alt={track.name} />
           <div className="flex space-x-6 items-center p-10 backdrop-blur-md rounded-2xl bg-zinc-900 bg-opacity-50">
-            <div className="relative w-cover aspect-square">
+            <div className="relative md:w-cover w-[65px] aspect-square">
               <Image
                 className="rounded-lg object-cover"
                 src={track.album.images[0].url}
@@ -69,7 +69,7 @@ export default function Element({
                 fill
               />
             </div>
-            <div className="flex flex-col space-y-1 justify-center md:max-w-sm max-w-[175px]">
+            <div className="flex flex-col space-y-1 justify-center md:max-w-sm sm:max-w-[175px] max-w-[140px]">
               <h1 className="text-2xl font-medium truncate" title={track.name}>
                 {track.name}
               </h1>

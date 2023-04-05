@@ -19,9 +19,13 @@ export default async function TopArtists({
 
   return (
     <div className="list">
-      {response.items.map((artist, index) => {
-        return <Element data={artist} place={index + 1} key={index} />;
-      })}
+      {response.items.length === 0 ? (
+        <></>
+      ) : (
+        response.items.map((artist, index) => {
+          return <Element data={artist} place={index + 1} key={index} />;
+        })
+      )}
     </div>
   );
 }
