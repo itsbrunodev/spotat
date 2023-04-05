@@ -6,9 +6,6 @@ module.exports = {
       colors: {
         spotify: "#1db954",
       },
-      width: {
-        cover: "80px",
-      },
     },
   },
   plugins: [],
