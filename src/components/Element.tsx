@@ -12,12 +12,21 @@ function Number({ number }: { number: number }) {
   );
 }
 
-function BackgroundImage({ src, alt }: { src: string; alt: string }) {
+function BackgroundImage({
+  src,
+  alt,
+  index,
+}: {
+  src: string;
+  alt: string;
+  index: number;
+}) {
   return (
     <Image
       className="absolute w-full h-full object-cover rounded-2xl"
       src={src}
       alt={alt}
+      priority={index < 4}
       quality={1}
       fill
     />
@@ -67,13 +76,18 @@ export default function Element({
       <Link href={artist.uri}>
         <OuterElement>
           <Number number={place} />
-          <BackgroundImage src={artist.images[0].url} alt={artist.name} />
+          <BackgroundImage
+            src={artist.images[0].url}
+            alt={artist.name}
+            index={place - 1}
+          />
           <InnerElement>
             <BackgroundImageWrapper>
               <Image
                 className="rounded-full object-cover"
                 src={artist.images[0].url}
                 alt={artist.name}
+                priority={place - 1 < 4}
                 fill
               />
             </BackgroundImageWrapper>
@@ -92,13 +106,18 @@ export default function Element({
       <Link href={track.uri}>
         <OuterElement>
           <Number number={place} />
-          <BackgroundImage src={track.album.images[0].url} alt={track.name} />
+          <BackgroundImage
+            src={track.album.images[0].url}
+            alt={track.name}
+            index={place - 1}
+          />
           <InnerElement>
             <BackgroundImageWrapper>
               <Image
                 className="rounded-lg object-cover"
                 src={track.album.images[0].url}
                 alt={track.name}
+                priority={place - 1 < 4}
                 fill
               />
             </BackgroundImageWrapper>
