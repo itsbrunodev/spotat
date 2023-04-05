@@ -37,7 +37,7 @@ export default function Element({
         <div className="hover:ring hover:ring-white rounded-2xl relative animate__animated animate__fadeIn">
           <Number number={place} />
           <BackgroundImage src={artist.images[0].url} alt={artist.name} />
-          <div className="flex space-x-6 items-center p-10 backdrop-blur-xl rounded-2xl bg-zinc-900 bg-opacity-50">
+          <div className="flex space-x-6 items-center p-10 backdrop-blur-md rounded-2xl bg-zinc-900 bg-opacity-50">
             <div className="relative w-cover aspect-square">
               <Image
                 className="rounded-full object-cover"
@@ -60,7 +60,7 @@ export default function Element({
         <div className="hover:ring hover:ring-white rounded-2xl relative animate__animated animate__fadeIn">
           <Number number={place} />
           <BackgroundImage src={track.album.images[0].url} alt={track.name} />
-          <div className="flex space-x-6 items-center p-10 backdrop-blur-xl rounded-2xl bg-zinc-900 bg-opacity-50">
+          <div className="flex space-x-6 items-center p-10 backdrop-blur-md rounded-2xl bg-zinc-900 bg-opacity-50">
             <div className="relative w-cover aspect-square">
               <Image
                 className="rounded-lg object-cover"
