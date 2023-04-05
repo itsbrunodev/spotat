@@ -1,6 +1,7 @@
+import { getServerSession } from "next-auth";
+
 import TopArtists from "@/components/categories/TopArtists";
 import { TimeRange } from "@/types";
-import { getServerSession } from "next-auth";
 
 export default async function App({
   searchParams = { t: TimeRange.Short },
