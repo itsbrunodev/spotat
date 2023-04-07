@@ -7,6 +7,7 @@ export async function fetchApi<ResponseType>(token: string, endpoint: string) {
     headers: {
       authorization: `Bearer ${token}`,
     },
+    cache: "no-store",
     method: "GET",
   });
 
