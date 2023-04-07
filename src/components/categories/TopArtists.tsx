@@ -1,9 +1,10 @@
 import { getServerSession } from "next-auth";
 
-import { fetchApi, getDataDb, setDataDb } from "@/functions";
+import { fetchApi, getDataDb, getLastUpdated, setDataDb } from "@/functions";
 import { Artist, Item, TimeRange } from "@/types";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import Element from "../Element";
+import LastUpdated from "../LastUpdated";
 
 export default async function TopArtists({
   timeRange = TimeRange.Short,
@@ -25,6 +26,7 @@ export default async function TopArtists({
   );
 
   const data = await getDataDb(session?.user?.id || "", "artists", timeRange);
+  const timestamp = await getLastUpdated(session?.user?.id || "");
 
   return (
     <div className="list">
@@ -55,6 +57,7 @@ export default async function TopArtists({
           );
         })
       )}
+      <LastUpdated timestamp={timestamp} />
     </div>
   );
 }

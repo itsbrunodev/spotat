@@ -137,3 +137,17 @@ export async function setDataDb(
     );
   }
 }
+
+export async function getLastUpdated(id: string) {
+  connectToDatabase();
+  await createUser(id);
+
+  const data = await User.findById(id).then((x) => {
+    if (x) {
+      return x.lastUpdated;
+    } else return 0;
+  });
+
+  if (!data) return 0;
+  else return data;
+}
