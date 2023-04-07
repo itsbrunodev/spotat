@@ -6,6 +6,10 @@ A tool that can check your top artists and tracks that you listen to.
 
 You log into the website, and it fetches information about your profile from the [Spotify Web API](https://developer.spotify.com/), depending on which buttons you click.
 
+## Ranking
+
+The first time you log into the website, the artists and tracks that you listen to get saved into a database, and every time the order of the artists and tracks changes, the change gets shown accordingly on the website (e.g., a green up arrow when a track moves up a place). If an artist or track is new to the list, a "New" badge will show.
+
 ## Running locally
 
 1. Clone the repository.
