@@ -3,12 +3,64 @@ import Image from "next/image";
 
 import { isArtist } from "@/functions";
 import { Artist, Track } from "@/types";
+import CaretUp from "./icons/CaretUp";
+import CaretDown from "./icons/CaretDown";
+import Neutral from "./icons/Neutral";
 
-function Number({ number }: { number: number }) {
+function Number({
+  type,
+  number,
+  change,
+  isNew,
+  hasChanged,
+}: {
+  type: string;
+  number: number;
+  change: number;
+  isNew: boolean;
+  hasChanged: boolean;
+}) {
+  const changeNum = change.toString();
+
   return (
-    <p className="absolute -top-3 -left-4 w-10 h-10 rounded-full bg-white text-black font-bold z-10 center text-lg">
-      {number}
-    </p>
+    <div
+      className={`absolute -top-3 -left-4 z-10 center md:text-lg text-base space-x-2 text-black`}
+    >
+      <div className="md:w-10 w-8 md:h-10 h-8 rounded-full bg-white font-bold center">
+        <p>{number}</p>
+      </div>
+      {hasChanged ? (
+        isNew ? (
+          <p
+            className="md:px-2 px-1 py-px md:text-base text-sm md:rounded-lg rounded-md bg-yellow-400 font-semibold center"
+            title={`This ${type} is new in your ranking.`}
+          >
+            New
+          </p>
+        ) : (
+          <div
+            className="md:w-10 w-8 md:h-10 h-8 rounded-full bg-white font-bold center"
+            title={
+              changeNum.startsWith("-")
+                ? changeNum
+                : changeNum !== "0"
+                ? `+${changeNum}`
+                : `This ${type} hasn't changed a place in your ranking.`
+            }
+          >
+            {change === 0 ? (
+              <Neutral />
+            ) : change > 0 ? (
+              <CaretUp />
+            ) : (
+              <CaretDown />
+            )}
+          </div>
+        )
+      ) : (
+        <></>
+      )}
+    </div>
   );
 }
 
@@ -28,6 +80,7 @@ function BackgroundImage({
       alt={alt}
       priority={index < 4}
       quality={1}
+      draggable={false}
       fill
     />
   );
@@ -66,16 +119,28 @@ function DataWrapper({ children }: { children: React.ReactNode }) {
 export default function Element({
   data,
   place,
+  change,
+  isNew,
+  hasChanged,
 }: {
   data: Artist | Track;
   place: number;
+  change: number;
+  isNew: boolean;
+  hasChanged: boolean;
 }) {
   if (isArtist(data)) {
     const artist = data;
     return (
       <Link href={artist.uri}>
         <OuterElement>
-          <Number number={place} />
+          <Number
+            type={data.type}
+            number={place}
+            change={change}
+            isNew={isNew}
+            hasChanged={hasChanged}
+          />
           <BackgroundImage
             src={artist.images[0].url}
             alt={artist.name}
@@ -88,6 +153,7 @@ export default function Element({
                 src={artist.images[0].url}
                 alt={artist.name}
                 priority={place - 1 < 4}
+                draggable={false}
                 fill
               />
             </BackgroundImageWrapper>
@@ -105,7 +171,13 @@ export default function Element({
     return (
       <Link href={track.uri}>
         <OuterElement>
-          <Number number={place} />
+          <Number
+            type={data.type}
+            number={place}
+            change={change}
+            isNew={isNew}
+            hasChanged={hasChanged}
+          />
           <BackgroundImage
             src={track.album.images[0].url}
             alt={track.name}
@@ -118,6 +190,7 @@ export default function Element({
                 src={track.album.images[0].url}
                 alt={track.name}
                 priority={place - 1 < 4}
+                draggable={false}
                 fill
               />
             </BackgroundImageWrapper>

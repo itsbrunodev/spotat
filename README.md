@@ -26,7 +26,7 @@ git clone https://github.com/brunolepis/spotat
 
 ```
 pnpm install
-pnpm run dev
+pnpm dev
 ```
 
 7. Using npm, install the dependencies and start the development server.

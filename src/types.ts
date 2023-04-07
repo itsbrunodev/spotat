@@ -57,6 +57,32 @@ export interface ApiResponse<ResponseType> {
   };
 }
 
+export interface IconProps {
+  className?: string;
+}
+
+export interface Item {
+  id: string;
+  change: number /* the new place of the artist/track compared to the old one */;
+  new: boolean /* if this item/track/artist is totally new */;
+  hasChanged: boolean /* if the place of the item has changed at all */;
+}
+
+export interface IUserSchema {
+  _id: string;
+  lastUpdated: number /* milliseconds, updated every day */;
+  artists: {
+    short_term: Item[];
+    medium_term: Item[];
+    long_term: Item[];
+  };
+  tracks: {
+    short_term: Item[];
+    medium_term: Item[];
+    long_term: Item[];
+  };
+}
+
 /* enums */
 export enum TimeRange {
   Long = "long_term" /* several years */,
@@ -68,6 +94,7 @@ declare module "next-auth" {
   interface Session {
     user?: {
       name: string;
+      id: string;
     };
     accessToken: string;
   }

@@ -9,6 +9,7 @@ import Repo from "@/components/Repo";
 import Profile, { description } from "@/components/Profile";
 import Login from "@/components/profile/Login";
 import Nav from "@/components/Nav";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -26,7 +27,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
 
   return (
     <html lang="en">
