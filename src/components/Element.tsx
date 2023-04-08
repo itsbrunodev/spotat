@@ -24,7 +24,7 @@ function Number({
 
   return (
     <div
-      className={`absolute -top-3 -left-4 z-10 center md:text-lg text-base space-x-2 text-black`}
+      className={`absolute -top-5 -left-5 z-10 center md:text-lg text-sm space-x-2 text-black`}
     >
       <div className="md:w-10 w-8 md:h-10 h-8 rounded-full bg-white font-bold center">
         <p>{number}</p>
@@ -75,7 +75,7 @@ function BackgroundImage({
 }) {
   return (
     <Image
-      className="absolute w-full h-full object-cover rounded-2xl"
+      className="absolute w-full h-full object-cover md:rounded-2xl rounded-lg"
       src={src}
       alt={alt}
       priority={index < 4}
@@ -88,7 +88,7 @@ function BackgroundImage({
 
 function OuterElement({ children }: { children: React.ReactNode }) {
   return (
-    <div className="hover:ring hover:ring-white rounded-2xl relative animate__animated animate__fadeIn">
+    <div className="hover:ring hover:ring-white md:rounded-2xl rounded-lg relative animate__animated animate__fadeIn">
       {children}
     </div>
   );
@@ -96,21 +96,38 @@ function OuterElement({ children }: { children: React.ReactNode }) {
 
 function InnerElement({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex space-x-6 items-center md:p-10 p-6 backdrop-blur-md rounded-2xl bg-zinc-900 bg-opacity-50">
+    <div className="flex space-x-6 items-center md:p-6 p-4 backdrop-blur-md md:rounded-2xl rounded-lg bg-zinc-900 bg-opacity-50">
       {children}
     </div>
   );
 }
 
-function BackgroundImageWrapper({ children }: { children: React.ReactNode }) {
+function ImageWrapper({
+  src,
+  alt,
+  priority,
+}: {
+  src: string;
+  alt: string;
+  priority: boolean;
+}) {
   return (
-    <div className="relative md:w-cover w-[65px] aspect-square">{children}</div>
+    <div className="relative md:w-[100px] w-[65px] aspect-square">
+      <Image
+        className="md:rounded-xl rounded-md object-cover"
+        src={src}
+        alt={alt}
+        priority={priority}
+        draggable={false}
+        fill
+      />
+    </div>
   );
 }
 
 function DataWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex flex-col space-y-1 justify-center md:max-w-sm sm:max-w-[330px] max-w-[180px]">
+    <div className="flex flex-col md:space-y-1 space-y-px justify-center md:max-w-sm sm:max-w-[330px] max-w-[180px]">
       {children}
     </div>
   );
@@ -147,18 +164,16 @@ export default function Element({
             index={place - 1}
           />
           <InnerElement>
-            <BackgroundImageWrapper>
-              <Image
-                className="rounded-full object-cover"
-                src={artist.images[0].url}
-                alt={artist.name}
-                priority={place - 1 < 4}
-                draggable={false}
-                fill
-              />
-            </BackgroundImageWrapper>
+            <ImageWrapper
+              src={artist.images[0].url}
+              alt={artist.name}
+              priority={place - 1 < 4}
+            />
             <DataWrapper>
-              <h1 className="text-3xl font-medium truncate" title={artist.name}>
+              <h1
+                className="md:text-3xl text-xl font-medium truncate"
+                title={artist.name}
+              >
                 {artist.name}
               </h1>
             </DataWrapper>
@@ -184,22 +199,20 @@ export default function Element({
             index={place - 1}
           />
           <InnerElement>
-            <BackgroundImageWrapper>
-              <Image
-                className="rounded-lg object-cover"
-                src={track.album.images[0].url}
-                alt={track.name}
-                priority={place - 1 < 4}
-                draggable={false}
-                fill
-              />
-            </BackgroundImageWrapper>
+            <ImageWrapper
+              src={track.album.images[0].url}
+              alt={track.name}
+              priority={place - 1 < 4}
+            />
             <DataWrapper>
-              <h1 className="text-2xl font-medium truncate" title={track.name}>
+              <h1
+                className="md:text-2xl text-xl font-medium truncate"
+                title={track.name}
+              >
                 {track.name}
               </h1>
               <div className="flex space-x-1">
-                <h2 className="truncate text-zinc-300">
+                <h2 className="md:text-base text-sm truncate text-zinc-300">
                   {track.artists.map((artist, index) => artist.name).join(", ")}
                 </h2>
               </div>

@@ -37,7 +37,7 @@ export default async function RootLayout({
         <Repo />
         {session ? (
           <Providers session={session}>
-            <div className="max-w-xl w-full h-full md:pt-20 pt-16 md:px-0 px-5">
+            <div className="max-w-xl w-full h-full md:pt-20 pt-16 md:px-0 px-7">
               <div className="flex flex-col space-y-12">
                 <div className="flex flex-col space-y-10 pb-12 border-b-2 border-b-zinc-800">
                   <Profile />
