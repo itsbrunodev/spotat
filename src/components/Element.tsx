@@ -32,7 +32,7 @@ function Number({
       {hasChanged ? (
         isNew ? (
           <p
-            className="md:px-2 px-1 py-px md:text-base text-sm md:rounded-lg rounded-md bg-yellow-400 font-semibold center"
+            className="md:px-1.5 px-1 py-px md:text-base text-sm rounded-md bg-yellow-400 font-semibold center"
             title={`This ${type} is new in your ranking.`}
           >
             New
