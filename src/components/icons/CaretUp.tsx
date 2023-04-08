@@ -1,9 +1,7 @@
-import { IconProps } from "@/types";
-
-export default function CaretUp({ className = "" }: IconProps) {
+export default function CaretUp() {
   return (
     <svg
-      className={`md:w-4 w-3 md:h-4 h-3 text-green-600 ${className}`}
+      className="md:w-4 w-3 md:h-4 h-3 text-green-600"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       strokeWidth="5"
