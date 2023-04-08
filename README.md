@@ -1,6 +1,6 @@
 # Spotat
 
-A tool that can check your top artists and tracks that you listen to.
+A tool that can check your top artists, tracks that you listen to and even show how your personal ranking changes over time.
 
 ## How it works
 
