@@ -20,7 +20,7 @@ export const authOptions: NextAuthOptions = {
       /* @ts-ignore */
       clientSecret: process.env.SPOTIFY_SECRET,
       authorization: {
-        params: { scope: "user-top-read user-read-recently-played" },
+        params: { scope: "user-top-read" },
       },
     }),
   ],
