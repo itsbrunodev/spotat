@@ -57,10 +57,6 @@ export interface ApiResponse<ResponseType> {
   };
 }
 
-export interface IconProps {
-  className?: string;
-}
-
 export interface Item {
   id: string;
   change: number /* the new place of the artist/track compared to the old one */;
