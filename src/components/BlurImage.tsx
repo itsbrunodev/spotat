@@ -25,7 +25,6 @@ export default function BlurImage({
         src={src}
         alt={alt}
         fill
-        unoptimized
       />
     </div>
   );
