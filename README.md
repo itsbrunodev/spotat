@@ -1,3 +1,9 @@
+#### Deprecated
+
+As the website has been flagged as a phishing site by Google (which I have already reported as a false flag), I've decided to **deprecate** this repository **for the time being**; no updates will be released during this period.
+
+---
+
 # Spotat
 
 A tool that can check your top artists, tracks that you listen to and even show how your personal ranking changes over time.
